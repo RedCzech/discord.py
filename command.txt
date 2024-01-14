@@ -1,0 +1,30 @@
+@bot.tree.command(name="help",description="幫助")
+async def help(interaction: discord.Interaction):
+ await interaction.response.send_message(f"help?")
+
+@bot.tree.command(name="hello",description="Say Hello")
+async def hello(interaction: discord.Interaction):
+  await interaction.response.send_message(f"Hello {interaction.user.mention}!")
+
+@bot.tree.command(name="擲筊",description="筊")
+async def 擲筊(interaction: discord.Interaction):
+  ran=random.randint(1, 3)
+  if ran == 1:
+    await interaction.response.send_message(f"聖筊")
+  elif ran == 2:
+    await interaction.response.send_message(f"陰筊")
+  elif ran == 3:
+    await interaction.response.send_message(f"笑筊")
+
+@bot.tree.command(name="ping",description="延遲查詢")
+async def ping(interaction: discord.Interaction):
+  await interaction.response.send_message(f'Pong! | 延遲為{round(bot.latency*1000)}(ms)')
+
+@bot.tree.command(name="pings",description="卡沒卡，延遲查詢")
+async def pings(interaction: discord.Interaction):
+  await interaction.response.send_message(f'Pong! | 延遲為{round(bot.latency*1000)}(ms)')
+
+@bot.tree.command(name="clear",description="清除訊息")
+async def clear(interaction: discord.Interaction,num:int):
+  await interaction.response.send_message(f'清除 {num} 垃圾')
+  await interaction.channel.purge(limit=num+1)
